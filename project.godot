@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="AppleGame"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/Main_menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/Phoenix/Documents/GitHub/sgk-stuff-olmypias/ExterraAppleGame/Movies/movie.avi"
 
 [input]
 
