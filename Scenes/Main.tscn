@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0eiihjumr3mi"]
+[gd_scene load_steps=8 format=3 uid="uid://b0eiihjumr3mi"]
 
 [ext_resource type="TileSet" uid="uid://b157yei3uv3yg" path="res://Textures/World.tres" id="1_2blvh"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_ksxnn"]
 [ext_resource type="Texture2D" uid="uid://18wkko5xgikb" path="res://Textures/Billy.png" id="2_23x3y"]
 [ext_resource type="Script" path="res://Scripts/TilePlacement.gd" id="2_lvwct"]
+[ext_resource type="Texture2D" uid="uid://cf4xtpaahycpn" path="res://Textures/SellBasketpng.png" id="5_vqbra"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhau4"]
 size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvv55"]
+size = Vector2(290, 330)
 
 [node name="World" type="Node"]
 
@@ -34,6 +38,38 @@ script = ExtResource("1_ksxnn")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterBody2D/Camera2D"]
+z_index = 1
+offset_left = -920.0
+offset_top = -500.0
+offset_right = -919.0
+offset_bottom = -450.0
+
+[node name="Apples" type="Label" parent="CharacterBody2D/Camera2D/VBoxContainer"]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="CharacterBody2D/Camera2D/VBoxContainer"]
+layout_mode = 2
+
+[node name="Trees" type="Label" parent="CharacterBody2D/Camera2D/VBoxContainer"]
+layout_mode = 2
+
+[node name="Paths" type="Label" parent="CharacterBody2D/Camera2D/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CharacterBody2D/Camera2D"]
+texture_filter = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -920.0
+offset_top = 446.0
+offset_right = -815.0
+offset_bottom = 500.0
+grow_vertical = 0
+text = "Draw 5 cards!
+50$"
+
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_23x3y")
@@ -41,3 +77,23 @@ texture = ExtResource("2_23x3y")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 21)
 shape = SubResource("RectangleShape2D_qhau4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-286, 26)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_vqbra")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-0.00012207, 0)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_cvv55")
+
+[connection signal="pressed" from="CharacterBody2D/Camera2D/Button" to="CharacterBody2D" method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="Places/Farm" method="_on_timer_timeout"]
+[connection signal="input_event" from="Sprite2D/Area2D" to="CharacterBody2D" method="_on_area_2d_input_event"]
