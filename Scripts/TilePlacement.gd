@@ -4,6 +4,11 @@ extends TileMap
 var sel = 1
 var PathAtlasCoords = [Vector2i(2,0),Vector2i(3,0),Vector2i(4,0),Vector2i(5,0),Vector2i(6,0), Vector2i(7,0),Vector2i(8,0),Vector2i(9,0), Vector2i(2,1),Vector2i(3,1),Vector2i(4,1),Vector2i(5,1),Vector2i(6,1), Vector2i(7,1),Vector2i(8,1),Vector2i(9,1)]
 
+var Trees = self.get_used_cells_by_id(0,0,Vector2i(1,0))
+
+func _ready():
+	pass # Replace with function body.
+
 # Called when the node enters the scene tree for the first time.
 
 var Trees = self.get_used_cells_by_id(0,0,Vector2i(1,0))

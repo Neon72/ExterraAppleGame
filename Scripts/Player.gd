@@ -2,13 +2,10 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-<<<<<<< Updated upstream
-=======
 @onready var Apples = get_node("Camera2D/VBoxContainer/Apples")
 @onready var Money = get_node("Camera2D/Money")
 @onready var Trees = get_node("Camera2D/VBoxContainer/Trees")
 @onready var Paths = get_node("Camera2D/VBoxContainer/Paths")
->>>>>>> Stashed changes
 
 
 func _physics_process(delta):
@@ -16,6 +13,7 @@ func _physics_process(delta):
 	Money.text = "$" + str(GameMaster.Money)
 	Trees.text = "Trees: " + str(GameMaster.Trees)
 	Paths.text = "Paths: " + str(GameMaster.Paths)
+  
 	var directionx = Input.get_axis("left", "right")
 	var directiony = Input.get_axis("up", "down")
 	var movement = Vector2(directionx,directiony).normalized()
