@@ -12,15 +12,10 @@ const SPEED = 300.0
 
 
 func _physics_process(delta):
-	
-<<<<<<< Updated upstream
-=======
 	Apples.text = "Apples: " + str(GameMaster.Apples)
 	Money.text = "$" + str(GameMaster.Money)
 	Trees.text = "Trees: " + str(GameMaster.Trees)
 	Paths.text = "Paths: " + str(GameMaster.Paths)
-	
->>>>>>> Stashed changes
 	var directionx = Input.get_axis("left", "right")
 	var directiony = Input.get_axis("up", "down")
 	var movement = Vector2(directionx,directiony).normalized()
@@ -28,9 +23,6 @@ func _physics_process(delta):
 	velocity = movement * SPEED
 	
 	move_and_slide()
-<<<<<<< Updated upstream
-=======
-	
 	if Input.is_action_just_pressed("Build Mode"):
 		# Shortened
 		GameMaster.BuildMode = not GameMaster.BuildMode
@@ -55,4 +47,3 @@ func _on_button_pressed():
 			2:
 				GameMaster.Paths += 1
 	GameMaster.Money -= 50
->>>>>>> Stashed changes
