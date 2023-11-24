@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://brkjnvurf58gc"]
 
-[ext_resource type="Texture2D" path="res://Textures/Inventory_Square.png" id="1_s2nlv"]
+[ext_resource type="Texture2D" uid="uid://ci6lxrhuhqmhg" path="res://Textures/Inventory_Square.png" id="1_s2nlv"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

@@ -9,24 +9,19 @@ var Trees = self.get_used_cells_by_id(0,0,Vector2i(1,0))
 func _ready():
 	pass # Replace with function body.
 
-# Called when the node enters the scene tree for the first time.
-
-var Trees = self.get_used_cells_by_id(0,0,Vector2i(1,0))
 var inventory_slots = GameMaster.InventorySlots
-func _ready():
-	pass # Replace with function bo	dy.
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# Super Condensed input detector 
-	for i in inventory_slots:
+	for i in range(1, inventory_slots):
 		if Input.is_action_just_pressed(str(i)):
 			sel = i
 	# Mouse is only referenced for this variable so i just integrated it into
 	# the definition
 	var cell :Vector2 = self.local_to_map(get_global_mouse_position())
 	if Input.is_mouse_button_pressed(1) and GameMaster.BuildMode:
-		match cell: 
+		match sel: 
 			1: 
 				if self.get_cell_atlas_coords(0,cell) == Vector2i(1,0):
 					GameMaster.Trees += 0.5
