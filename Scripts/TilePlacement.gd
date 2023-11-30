@@ -13,41 +13,40 @@ var inventory_slots = GameMaster.InventorySlots
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	# Super Condensed input detector 
 	for i in range(1, inventory_slots):
 		if Input.is_action_just_pressed(str(i)):
 			sel = i
 	# Mouse is only referenced for this variable so i just integrated it into
 	# the definition
-	var cell :Vector2 = self.local_to_map(get_global_mouse_position())
+	var cell_coords :Vector2 = self.local_to_map(get_global_mouse_position())
+	var cell = CellMakerCell.CellMaker(self, cell_coords, 0)
+	
 	if Input.is_mouse_button_pressed(1) and GameMaster.BuildMode:
 		match sel: 
 			1: 
-				if self.get_cell_atlas_coords(0,cell) == Vector2i(1,0):
+				if cell.type == "Tree":
 					GameMaster.Trees += 0.5
-				if self.get_cell_atlas_coords(0,cell) != Vector2i(1,0) and self.get_cell_atlas_coords(0,cell) != Vector2i(0,0) and self.get_cell_source_id(0,cell) != -1:
+				if cell.class == "Path":
 					GameMaster.Paths += 0.5
-				self.erase_cell(0,cell)
-				self.set_cells_terrain_connect(0,[cell],0,-1,true)
-				self.set_cell(0,cell,0,Vector2i(0,0),0)
+				cell.change_cell_to("Grass", "type")
 			2:
 				if GameMaster.Trees > 0:
-					if self.get_cell_atlas_coords(0,cell) == Vector2i(1,0):
+					if cell.cType == "Tree":
 						return
-					if self.get_cell_atlas_coords(0,cell) != Vector2i(1,0) and self.get_cell_atlas_coords(0,cell) != Vector2i(0,0) and self.get_cell_source_id(0,cell) != -1:
+					if cell.cClass == "Path":
 						GameMaster.Paths += 0.5
-					self.erase_cell(0,cell)
-					self.set_cells_terrain_connect(0,[cell],0,-1,true)
-					self.set_cell(0,cell,0,Vector2i(1,0),0)
+					cell.change_cell_to("Grass", "type")
 					GameMaster.Trees -= 0.5
 			3:
 				if GameMaster.Paths > 0:
-					if self.get_cell_atlas_coords(0,cell) == Vector2i(1,0):
+					if cell.cType == "Tree":
 						GameMaster.Trees += 0.5
-					if self.get_cell_atlas_coords(0,cell) != Vector2i(1,0) and self.get_cell_atlas_coords(0,cell) != Vector2i(0,0) and self.get_cell_source_id(0,cell) != -1:
+					if cell.cClass == "Path":
 						return
-					self.erase_cell(0,cell)
-					self.set_cells_terrain_connect(0,[cell],0,0,true)
+					cell.change_cell_to("Path", "class")
+					cell.path_reset()
 					GameMaster.Paths -= 0.5
 
 

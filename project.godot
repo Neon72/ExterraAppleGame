@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameMaster="*res://Scripts/GameMaster.gd"
+CellHandler="*res://Scripts/CellMakerCell.gd"
+CellMakerCell="*res://Scripts/CellMakerCell.gd"
 
 [display]
 
